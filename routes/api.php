@@ -76,6 +76,8 @@ Route::delete("permission/delete/{permission_id}", [PermissionController::class,
 Route::get("subject/index", [SubjectController::class, "index"]);
 Route::get("subject/{id}", [SubjectController::class, "show"] );
 Route::post("subject/create", [SubjectController::class, "create"] );
+Route::put("subject/evaluate-grade", [SubjectController::class, "evaluate"]);
+Route::get("subject/student-grade/{student_id}/{subject_id}", [SubjectController::class, "getStudentGrade"]);
 Route::put("subject/update/{id}", [SubjectController::class, "update"] );
 Route::delete("subject/delete/{subject_id}", [SubjectController::class, "delete"] );
 

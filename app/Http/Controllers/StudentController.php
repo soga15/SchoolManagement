@@ -17,7 +17,7 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        $student = Student::with('class')->find($id);
+        $student = Student::with('class.course.subjects')->find($id);
 
         return $student;
     }

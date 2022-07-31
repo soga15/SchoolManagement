@@ -207,7 +207,7 @@ import axios from 'axios'
       dialogView: false,
       dialogDelete: false,
       headers: [
-        
+  
         { text: 'Subject_ID', value: 'id' },
         { text: 'Name', value: 'name'},
         {text: 'Description', value: 'description'},

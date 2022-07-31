@@ -10,7 +10,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::with('subjects')->get();
 
         return $courses;
     }
@@ -40,6 +40,7 @@ class CourseController extends Controller
             'name' =>$request->name,
             'description' =>$request->description
         ]);
+        $course->subjects()->sync($request->subjects);
 
         return $course;
     }

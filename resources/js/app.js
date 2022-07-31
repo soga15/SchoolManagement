@@ -53,6 +53,11 @@ const routes = [
                 component: require('./components/student/index.vue').default
             },
             {
+                name: 'student_view',
+                path: 'student/view/:id',
+                component: require('./components/student/view.vue').default
+            },
+            {
                 name: 'user',
                 path: 'user',
                 component: require('./components/user/index.vue').default

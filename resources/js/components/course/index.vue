@@ -43,8 +43,6 @@
                 <v-row>
                   <v-col
                     cols="12"
-                    sm="6"
-                    md="4"
                   >
                     <v-text-field
                       v-model="editedItem.name"
@@ -54,16 +52,27 @@
 
                   <v-col
                     cols="12"
-                    sm="6"
-                    md="4"
                   >
                     <v-text-field
                       v-model="editedItem.description"
                       label="Description"
                     ></v-text-field>
                   </v-col>
-                  
-
+                  <v-col
+                    cols="12"
+                  >
+                    <v-select
+                      v-model="editedItem.subjects"
+                      :items="all_subjects"
+                      item-text="text"
+                      item-value="value"
+                      :menu-props="{ maxHeight: '400' }"
+                      label="Select"
+                      multiple
+                      hint="Select subjects"
+                      persistent-hint
+                    ></v-select>
+                  </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -201,11 +210,13 @@ import axios from 'axios'
       editedItem: {
         name: '',
         description: '',
+        subjects: []
       },
       defaultItem: {
         name: '',
         description: '',
       },
+      all_subjects: []
     }),
 
     computed: {
@@ -235,7 +246,26 @@ import axios from 'axios'
       {
         axios.get('api/course/index')
         .then(response=> {
-          this.courses = response.data
+          this.courses = response.data.map(item => {
+            return {
+              ...item,
+              subjects: item.subjects.map(subject => {
+                return subject.id
+              })
+            }
+          })
+        }).catch(error => {
+          console.log(error)
+        })
+
+        axios.get('api/subject/index')
+        .then(response=> {
+          this.all_subjects = response.data.map(item => {
+            return {
+              text: item.name,
+              value: item.id
+            }
+          })
         }).catch(error => {
           console.log(error)
         })

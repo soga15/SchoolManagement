@@ -9,9 +9,7 @@
 <script>
   export default {
     mounted(){
-      if (this.authenticated) {
-        this.$router.push('/')
-      }else{
+      if (!this.authenticated) {
         this.$router.push('/auth')
       }
     },

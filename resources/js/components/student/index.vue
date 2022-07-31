@@ -411,9 +411,7 @@ import axios from 'axios'
 
       viewItem(item) 
       {
-        this.editedIndex = this.students.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialogView = true
+        this.$router.push({name: 'student_view', params: {id: item.id}})
       },
      
       editItem(item) {

@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('course_subjects', function (Blueprint $table) {
+        Schema::create('student_subjects', function (Blueprint $table) {
             $table->id();
+            $table->string('grade');
             $table->timestamps();
 
-            $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students');
 
             $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')->references('id')->on('subjects');
-
-            $table->unsignedBigInteger('room_id')->nullable();
-            $table->foreign('room_id')->references('id')->on('rooms');
         });
     }
 
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_subjects');
+        //
     }
 };
